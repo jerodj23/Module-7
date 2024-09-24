@@ -49,7 +49,44 @@ This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENS
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   return `# ${data.title}
+  ${renderLicenseBadge(data.license)}
 
+  ## Description
+  ${data.description}
+  
+  ## Table of Contents
+  1. [Installation](#installation)
+  2. [Usage](#usage)
+  3. [Contributing](#contributing)
+  4. [Tests](#tests)
+  5. [License](#license)
+  
+  ## Installation
+  ${data.installation}
+  
+  ## Usage
+  ${data.usage}
+  
+  ## Contributing
+  ${data.contributing}
+  
+  ## Tests
+  ${data.tests}
+  
+  ${renderLicenseSection(data.license)}
+  `;
 }
 
-export default generateMarkdown;
+module.exports = generateMarkdown;
+
+const exampleData = {
+  title: 'My Project',
+  description: 'This is a sample project.',
+  installation: 'To install, run `npm install`.',
+  usage: 'To use, run `npm start`.',
+  contributing: 'To contribute, open a pull request.',
+  tests: 'To run tests, run `npm test`.',
+  license: 'MIT',  // Could be 'MIT', 'GPLv3', 'Apache-2.0', or an empty string
+};
+
+console.log(generateMarkdown(exampleData));

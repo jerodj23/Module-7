@@ -1,8 +1,6 @@
 // TODO: Include packages needed for this application
-const fs - require("fs");
+const fs = require("fs");
 const inquirer = require("inquirer");
-const { getPriority } = require('os');
-const { title } = require('process');
 const path = require('path');
 const generateMarkdown = require('./utils/generateMarkdown');
 
@@ -61,15 +59,23 @@ const question = [
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
     return fs.writeToFileSync(path.join(process.cwd(), fileName), data);
-
 }
+const data = "# README\n README content here";
+const fileName = "README.md";
 
+try {
+    writeToFile(fileName, data);
+    console.log("File written successfully.");
+} catch (error) {
+    console.error("Error writing file:", error);
+}
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
 inquirer.prompt(question).then((response) => {
     console.log("creating a profressional README.md File");
     writeToFile("./dist.README.md", generateMarkdown({ ...response }));
 });
+}
 
 // Function call to initialize app
 init();
